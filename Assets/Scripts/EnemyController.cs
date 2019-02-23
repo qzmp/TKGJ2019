@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private AudioController _audioController;
-    
+
     public float visibilityAngle = 90;
     public float rotationSpeed = 180;
     public float runningSpeed = 5;
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if(player.IsInLight)
+        if(this.lightFlicker && player.IsInLight)
         {
             this.lightFlicker.SetIntensity(true);
             if(IsFacingPlayer())

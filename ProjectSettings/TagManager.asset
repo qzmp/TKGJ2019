@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - Background
+	Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,8 @@ TagManager:
   - 
   - 
   - VFX
-  - Enemy
+  - Background
+	Enemy
   - 
   - 
   - 

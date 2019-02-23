@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FogSpell : MonoBehaviour
 {
+    [SerializeField]
+    private float _durationTime;
+
     [SerializeField]
     private Transform _fogPrefab;
 
@@ -25,33 +29,35 @@ public class FogSpell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_player.mana > _fogCost && Input.GetMouseButtonDown(0))
+        if (_player.Mana > _fogCost && _fogCount < _fogMax && Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Background")))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 if (Vector3.Distance(transform.position, hit.point) < _fogDistance)
                 {
-                    SpawnFog(hit);
+                    SpawnFog(hit.point);
                 }
             }
         }
     }
 
-    public void SpawnFog(RaycastHit raycastHit)
+    public void SpawnFog(Vector3 spawnPosition)
     {
         //if (mana > _fogCost)
         {
-            _player.mana -= _fogCost;
-            Instantiate(_fogPrefab, raycastHit.point, Quaternion.identity);
+            _player.Mana -= _fogCost;
+            _fogCount++;
+            Transform fogSpell = Instantiate(_fogPrefab, spawnPosition, Quaternion.identity);
+            fogSpell.DOScale(0.0f, _durationTime).SetEase(Ease.InSine).OnComplete(() => { _fogCount--; Destroy(fogSpell.gameObject); });
         }
     }
 }

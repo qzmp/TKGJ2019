@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private Slider _manaBar;
+
     [SerializeField]
     private Animator _legsAnimator;
 
@@ -29,8 +33,22 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _dashCost;
 
+    //[SerializeField]
+    public Action UpdateMana;
     [SerializeField]
-    public float mana;
+    private float _mana;
+    public float Mana
+    {
+        set
+        {
+            _mana = Mathf.Clamp(value, 0.0f, 1.0f);
+            _manaBar.value = _mana;
+        }
+        get
+        {
+            return _mana;
+        }
+    }
 
     [SerializeField]
     private float _manaRegeneration;
@@ -38,13 +56,14 @@ public class Player : MonoBehaviour
     private Vector3 _velocity;
     private bool _doDash;
 
-    
-    public Action UpdateMana;
     public bool canDash = false;
 
     private Rigidbody2D _rigidbody;
-    [SerializeField] private PlayerAudioController _playerAudioController;
     public static bool IsAlive = true;
+
+    [SerializeField]
+    private PlayerAudioController _playerAudioController;
+
     void Start()
     {
         Assert.IsNotNull(_legsAnimator);
@@ -99,21 +118,26 @@ public class Player : MonoBehaviour
             {
                 _doDash = true;
             }
-
-            mana = Mathf.Clamp(mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
-
+            _mana = Mathf.Clamp(_mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
         }
+        Mana = Mathf.Clamp(Mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
     }
 
     private void FixedUpdate()
     {
         if (IsAlive)
-        {       
+        {
             Vector3 dirUp = Vector2.up;
             Vector2 movementInput = GetMovementInput();
             Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float movementAngle = Vector2.SignedAngle(dirUp, movementInput);
             _playerAudioController.SetWalkAudio(GetMovementInput());
+
+            try
+            {
+                _playerAudioController.SetWalkAudio(GetMovementInput());
+            }
+            catch { }
 
             if (_dashCooldown > 0) //Wariant: cooldown dasha
             {
@@ -121,33 +145,53 @@ public class Player : MonoBehaviour
 
                 if (_doDash && Time.time < _lastDashTime + _dashCooldown)
                 {
-                    _doDash = false;
+                    AbilityDisplayController.Instance.SetDashDisplay((Time.time - _lastDashTime) / _dashCooldown);
+
+                    if (_doDash && Time.time < _lastDashTime + _dashCooldown)
+                    {
+                        _doDash = false;
+                    }
+                    else if (_doDash)
+                    {
+                        _lastDashTime = Time.time;
+                        AbilityDisplayController.Instance.ActivateDashDisplay();
+                        Debug.Log(_lastDashTime);
+                    }
                 }
-                else if (_doDash)
+                if (GetMovementInput().magnitude > 0)
                 {
+                    this._rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * (_doDash ? _dashSpeed : _speed), (_doDash ? ForceMode2D.Impulse : ForceMode2D.Force));
+                    _doDash = false;
+
                     _lastDashTime = Time.time;
                     AbilityDisplayController.Instance.ActivateDashDisplay();
                     Debug.Log(_lastDashTime);
+
+                    if (_doDash && Time.time < _lastDashTime + _dashCooldown)
+                    {
+                        _doDash = false;
+                    }
+                    else if (_doDash)
+                    {
+                        _lastDashTime = Time.time;
+                    }
                 }
             }
             if (GetMovementInput().magnitude > 0)
             {
-
-
-                if(_dashCost > 0) //Wariant: mana
+                if (_dashCost > 0) //Wariant: mana
                 {
-                    if (_doDash && mana < _dashCost)
+                    if (_doDash && Mana < _dashCost)
                         _doDash = false;
                     else if (_doDash)
-                        mana -= _dashCost;
+                    {
+                        Mana -= _dashCost;
+                    }
                 }
-
-                _rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * (_doDash ? _dashSpeed : _speed), (_doDash ? ForceMode2D.Impulse : ForceMode2D.Force));
-                _doDash = false;
             }
         }
     }
-    
+
     public void TeachDash()
     {
         this.canDash = true;
