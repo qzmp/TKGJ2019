@@ -11,7 +11,6 @@ public class FogSpell : MonoBehaviour
     [SerializeField]
     private Transform _fogPrefab;
 
-    [SerializeField]
     private Player _player;
 
     [SerializeField]
@@ -20,27 +19,41 @@ public class FogSpell : MonoBehaviour
     [SerializeField]
     private float _fogDistance;
 
-    [SerializeField]
     private float _fogCount;
 
     [SerializeField]
     private float _fogMax;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private float lastFogTime;
+    public float fogCooldown;
+    public bool canUseFog = false;
 
+    void Awake()
+    {
+        this._player = GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        this.lastFogTime = float.NegativeInfinity;
+
+        if (this.canUseFog)
+        {
+            AbilityDisplayController.Instance.ShowFogDisplay();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_player.Mana > _fogCost && _fogCount < _fogMax && Input.GetMouseButtonDown(0))
+        AbilityDisplayController.Instance.SetFogDisplay((Time.time - this.lastFogTime) / this.fogCooldown);
+
+        if (Input.GetMouseButtonDown(0) && IsFogReady())
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, 50))
             {
                 if (Vector3.Distance(transform.position, hit.point) < _fogDistance)
                 {
@@ -50,14 +63,28 @@ public class FogSpell : MonoBehaviour
         }
     }
 
+    private bool IsFogReady()
+    {
+        return Time.time > this.lastFogTime + this.fogCooldown;
+    }
+
     public void SpawnFog(Vector3 spawnPosition)
     {
         //if (mana > _fogCost)
         {
-            _player.Mana -= _fogCost;
+            AbilityDisplayController.Instance.ActivateFogDisplay();
+            this.lastFogTime = Time.time;
+            //_player.Mana -= _fogCost;
             _fogCount++;
             Transform fogSpell = Instantiate(_fogPrefab, spawnPosition, Quaternion.identity);
             fogSpell.DOScale(0.0f, _durationTime).SetEase(Ease.InSine).OnComplete(() => { _fogCount--; Destroy(fogSpell.gameObject); });
         }
+    }
+
+    public void TeachFog()
+    {
+        this.canUseFog = true;
+        AbilityDisplayController.Instance.ShowFogDisplay();
+
     }
 }
