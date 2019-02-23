@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckIfIsInLight(LightSource source)
     {
-        if (source.on && Vector3.Distance(source.transform.position, this.transform.position) < source.size)
+        float distToPlayer = Vector3.Distance(source.transform.position, this.transform.position);
+        if (source.on && distToPlayer < source.size)
         {
             Vector3 dirToLight = source.transform.position - this.transform.position;
             Vector3 rightVector = Vector3.Normalize(Quaternion.Euler(0, 0, 90) * dirToLight);
@@ -56,15 +57,23 @@ public class PlayerController : MonoBehaviour
 
             Debug.DrawRay(source.transform.position, dirToRightPoint);
             Debug.DrawRay(source.transform.position, dirToLeftPoint);
+            Debug.DrawRay(source.transform.position, -dirToLight);
 
-            if (!Physics2D.Raycast(source.transform.position, dirToRightPoint, source.size, this.occludingLayers))
+
+            if (!Physics2D.Raycast(source.transform.position, dirToRightPoint, distToPlayer, this.occludingLayers))
             {
                 return true;
             }
-            if (!Physics2D.Raycast(source.transform.position, dirToLeftPoint, source.size, this.occludingLayers))
+            if (!Physics2D.Raycast(source.transform.position, dirToLeftPoint, distToPlayer, this.occludingLayers))
             {
                 return true;
             }
+            if (!Physics2D.Raycast(source.transform.position, -dirToLight, distToPlayer, this.occludingLayers))
+            {
+                return true;
+            }
+
+
         }
         return false;
     }
