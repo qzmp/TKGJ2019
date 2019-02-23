@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -80,13 +81,12 @@ public class Player : MonoBehaviour
         worldMousePosition.z = 128;
         _topTransform.LookAt(worldMousePosition, Vector3.back);
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _doDash = true;
         }
 
-        mana = Mathf.Clamp (mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
-        
+        mana = Mathf.Clamp(mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
     }
 
     private void FixedUpdate()

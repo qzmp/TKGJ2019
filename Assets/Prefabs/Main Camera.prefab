@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7671231734301819007}
   - component: {fileID: 7671231734301818994}
   - component: {fileID: 7671231734301818993}
+  - component: {fileID: 2375955469864814480}
   - component: {fileID: 7671231734301818996}
   - component: {fileID: 7671231734301818998}
   - component: {fileID: 7671231734301818997}
@@ -94,6 +95,20 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7671231734301819006}
   m_Enabled: 1
+--- !u!114 &2375955469864814480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671231734301819006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca7926b639e545c43b539652fecb6e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _postProcessProfile: {fileID: 11400000, guid: 82556b33e119dfa42bfbbe6a316fba10,
+    type: 2}
 --- !u!114 &7671231734301818996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 9d27e49944f0f52479e86c042d4cc417, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 82556b33e119dfa42bfbbe6a316fba10, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
