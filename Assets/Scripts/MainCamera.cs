@@ -13,8 +13,14 @@ public class MainCamera : MonoBehaviour
         Instance = this;
     }
 
-    public void SetVignetteIntensity()
+    public void SetVignetteIntensity(FloatParameter intensity)
     {
+        Vignette vignette;
+        _postProcessProfile.TryGetSettings(out vignette);
 
+        if (vignette)
+        {
+            vignette.intensity = intensity;
+        }
     }
 }
