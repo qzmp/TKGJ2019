@@ -102,26 +102,25 @@ public class Player : MonoBehaviour
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float movementAngle = Vector2.SignedAngle(dirUp, movementInput);
         _playerAudioController.SetWalkAudio(GetMovementInput());
+
+        if (_dashCooldown > 0) //Wariant: cooldown dasha
+        {
+            AbilityDisplayController.Instance.SetDashDisplay((Time.time - _lastDashTime) / _dashCooldown);
+
+            if (_doDash && Time.time < _lastDashTime + _dashCooldown)
+            {
+                _doDash = false;
+            }
+            else if (_doDash)
+            {
+                _lastDashTime = Time.time;
+                AbilityDisplayController.Instance.ActivateDashDisplay();
+                Debug.Log(_lastDashTime);
+            }
+        }
         if (GetMovementInput().magnitude > 0)
         {
-            if (_dashCooldown > 0) //Wariant: cooldown dasha
-            {
-                if (Time.time < _lastDashTime + _dashCooldown)
-                {
-                    AbilityDisplayController.Instance.SetDashDisplay((Time.time - _lastDashTime) / _dashCooldown);
-                }
 
-                if (_doDash && Time.time < _lastDashTime + _dashCooldown)
-                {
-                    _doDash = false;
-                }
-                else if (_doDash)
-                {
-                    _lastDashTime = Time.time;
-                    AbilityDisplayController.Instance.ActivateDashDisplay();
-                    Debug.Log(_lastDashTime);
-                }
-            }
 
             if(_dashCost > 0) //Wariant: mana
             {
