@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
         set
         {
             _mana = Mathf.Clamp(value, 0.0f, 1.0f);
-            _manaBar.value = _mana;
+            if(_manaBar != null)
+                _manaBar.value = _mana;
         }
         get
         {
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
             worldMousePosition.z = 128;
             _topTransform.LookAt(worldMousePosition, Vector3.back);
 
-            if (Input.GetKeyDown(KeyCode.Space)/*FIXIT&& this.canDash*/)
+            if (Input.GetKeyDown(KeyCode.Space) && this.canDash)
             {
                 _doDash = true;
             }
