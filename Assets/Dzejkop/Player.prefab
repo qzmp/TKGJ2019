@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6869477823484328529}
   - component: {fileID: 1669995640518216939}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0001_arm_left_lowered
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7268698653544943514}
   - component: {fileID: 2614122828921411060}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ Transform:
   m_GameObject: {fileID: 4063740743298387865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 121536324530805465}
   - {fileID: 2829766411503026775}
@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2230997772156430784}
   - component: {fileID: 1516737363402970937}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0003_arm_right_straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3122892900383390189}
   - component: {fileID: 571605787156012918}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0005_torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5027009143386326842}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 5583240281504857769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 3122892900383390189}
   - {fileID: 6809085988940888752}
@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6809085988940888752}
   - component: {fileID: 4925652102042062112}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player_arm_right_lowered
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2714654305426274908}
   - component: {fileID: 7699725538726505748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0004_head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7540462342468222555}
   - component: {fileID: 6890600685937003431}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0002_arm_left_straight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 121536324530805465}
   - component: {fileID: 2985282337167249230}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0007_foot_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -652,9 +652,11 @@ GameObject:
   - component: {fileID: 3495095673372062128}
   - component: {fileID: 4975169254334940515}
   - component: {fileID: 6485519625448606320}
-  m_Layer: 0
+  - component: {fileID: 433667790}
+  - component: {fileID: 433667789}
+  m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,6 +708,45 @@ MonoBehaviour:
   _legsAnimator: {fileID: 2614122828921411060}
   _legsTransform: {fileID: 7268698653544943514}
   _topTransform: {fileID: 5027009143386326842}
+  _speed: 1
+  _smoothTime: 0
+--- !u!50 &433667790
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976402870429878300}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &433667789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976402870429878300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73659222cffba91449160b01d2bb2fb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInLight: 0
+  occludingLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &8218801734365798891
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2829766411503026775}
   - component: {fileID: 8077262751810762748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player__0006_foot_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
