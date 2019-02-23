@@ -46,10 +46,9 @@ public class FogSpell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AbilityDisplayController.Instance.SetFogDisplay((Time.time - this.lastFogTime) / this.fogCooldown);
 
-        if (Input.GetMouseButtonDown(0) && IsFogReady())
-        {
+        AbilityDisplayController.Instance.SetFogDisplay((Time.time - this.lastFogTime) / this.fogCooldown);
+        if (Input.GetAxis("Fire1") != 0 && _player.Mana > _fogCost && _fogCount < _fogMax)        {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

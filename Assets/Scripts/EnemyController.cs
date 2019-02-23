@@ -106,7 +106,11 @@ public class EnemyController : MonoBehaviour
             if (search) agent.SearchPath();
         }
 
-        _audioController.SetWalkAudio(agent.velocity);
+        try
+        {
+            _audioController.SetWalkAudio(agent.velocity);
+        }
+        catch { }
     }
 
     private void RotateTowardsPlayer()
