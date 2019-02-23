@@ -54,13 +54,14 @@ public class PlayerController : MonoBehaviour
             Vector3 dirToRightPoint = rightPoint - source.transform.position;
             Vector3 dirToLeftPoint = leftPoint - source.transform.position;
 
-            RaycastHit2D hit;
+            Debug.DrawRay(source.transform.position, dirToRightPoint);
+            Debug.DrawRay(source.transform.position, dirToLeftPoint);
 
-            if (!Physics2D.Raycast(source.transform.position, dirToRightPoint, source.size * 2, this.occludingLayers))
+            if (!Physics2D.Raycast(source.transform.position, dirToRightPoint, source.size, this.occludingLayers))
             {
                 return true;
             }
-            if (!Physics2D.Raycast(source.transform.position, dirToLeftPoint, source.size * 2, this.occludingLayers))
+            if (!Physics2D.Raycast(source.transform.position, dirToLeftPoint, source.size, this.occludingLayers))
             {
                 return true;
             }

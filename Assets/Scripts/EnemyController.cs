@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     /// <summary>Time in seconds to wait at each target</summary>
     public float delay = 0;
 
+    private LightFlicker lightFlicker;
+
     /// <summary>Current target index</summary>
     int currentTargetIndex;
 
@@ -34,6 +36,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<IAstarAI>();
         this.player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         this.normalSpeed = this.agent.maxSpeed;
+        this.lightFlicker = GetComponentInChildren<LightFlicker>(true);
     }
 
     /// <summary>Update is called once per frame</summary>
@@ -41,6 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         if(player.IsInLight)
         {
+            this.lightFlicker.SetIntensity(true);
             if(IsFacingPlayer())
             {
                 if(this.isPatrolling)
@@ -61,6 +65,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            this.lightFlicker.SetIntensity(false);
             this.agent.isStopped = false;
             this.agent.maxSpeed = normalSpeed;
             this.isPatrolling = true;
