@@ -915,12 +915,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.27
+  radius: 1.5
   height: 0.01
-  repathRate: 0.5
+  repathRate: 0.1
   canSearch: 1
   canMove: 1
-  maxSpeed: 1.81
+  maxSpeed: 2
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -932,11 +932,11 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 1
-  pickNextWaypointDist: 2
+  pickNextWaypointDist: 2.44
   endReachedDistance: 0.5
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 0
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 0
 --- !u!114 &8673985016361311108
 MonoBehaviour:
@@ -967,10 +967,8 @@ MonoBehaviour:
   _audioController: {fileID: 7795248925275965960}
   visibilityAngle: 90
   rotationSpeed: 2
-  runningSpeed: 5
+  runningSpeed: 25
   patrolTargets:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   delay: 5
