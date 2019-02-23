@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -36,6 +37,8 @@ public class Player : MonoBehaviour
 
     private Vector3 _velocity;
     private bool _doDash;
+
+    public Action UpdateMana;
 
     void Start()
     {
