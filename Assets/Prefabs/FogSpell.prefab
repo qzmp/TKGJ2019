@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8374485093562933189}
   - component: {fileID: 8374485093562933188}
   - component: {fileID: 7080310028123453336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FogSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8374485093562933190}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
