@@ -21,6 +21,8 @@ public class StunSpell : MonoBehaviour
     private Player _player;
     private float _lastUse;
 
+    public bool canStun;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,7 @@ public class StunSpell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Fire2") != 0 && _lastUse + _stunCooldown < Time.time)
+        if (Input.GetAxis("Fire2") != 0 && canStun && _lastUse + _stunCooldown < Time.time)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
