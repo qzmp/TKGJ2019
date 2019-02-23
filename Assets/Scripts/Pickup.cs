@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour
 {
     public UnityEvent onPickup;
 
-    private void OnTriggerEnter2D(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(onPickup != null)
         {
