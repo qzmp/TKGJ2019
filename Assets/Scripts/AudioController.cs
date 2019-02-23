@@ -8,6 +8,8 @@ using Vector2 = UnityEngine.Vector2;
 public class AudioController : MonoBehaviour
 {
     [SerializeField] protected AudioSource _walkAudioSource;
+    [SerializeField] private AudioSource _detectedAudioSource;
+
     protected float pitchOffset = 0.05f;
     protected void Start()
     {
@@ -27,6 +29,14 @@ public class AudioController : MonoBehaviour
         else
         {
             _walkAudioSource.loop = false;
+        }
+    }
+   
+    public void PlayDetectedAudioSource()
+    {
+        if (!_detectedAudioSource.isPlaying && Player.IsAlive)
+        {
+            _detectedAudioSource.Play();
         }
     }
 

@@ -5,9 +5,7 @@ using UnityEngine.Serialization;
 
 public class PlayerAudioController : AudioController
 {
-    [SerializeField] protected AudioSource _detectedAudioSource;
     [SerializeField] protected AudioSource _deathAudioSource;
-    
     
     public override void SetWalkAudio(Vector2 velocity)
     {
@@ -27,21 +25,11 @@ public class PlayerAudioController : AudioController
             }
         }
     }
-    
-    
-    public void PlayDetectedAudioSource()
-    {
-        if (!_detectedAudioSource.isPlaying && Player.IsAlive)
-        {
-            _detectedAudioSource.Play();
-        }
-    }
     public void PlayDeathAudioSource()
     {
         if (!_deathAudioSource.isPlaying)
         {
             _walkAudioSource.Stop();
-            _detectedAudioSource.Stop();
             _deathAudioSource.Play();
         }
     }

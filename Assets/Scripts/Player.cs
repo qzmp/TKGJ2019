@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     private Animator _legsAnimator;
 
     [SerializeField]
+    private Animator _topAnimator;
+
+    [SerializeField]
     private Transform _legsTransform;
 
     [SerializeField]
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Assert.IsNotNull(_legsAnimator);
+        Assert.IsNotNull(_topAnimator);
         Assert.IsNotNull(_legsTransform);
         Assert.IsNotNull(_topTransform);
         this._rigidbody = GetComponent<Rigidbody2D>();
@@ -84,23 +88,27 @@ public class Player : MonoBehaviour
             Vector2 movementInput = GetMovementInput();
             Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float movementAngle = Vector2.SignedAngle(dirUp, movementInput);
+            float speed = movementInput.magnitude;
 
-            _legsAnimator.SetBool("is_walking", movementInput.magnitude > 0);
+            _legsAnimator.SetBool("is_walking", speed > 0);
+            _topAnimator.SetBool("is_idle", speed < 0.1f);
+            _topAnimator.SetBool("is_walking", speed >= 0.1f);
+            _topAnimator.SetFloat("walking_speed", speed);
 
             if (Mathf.Abs(movementAngle) > 90f)
             {
-                _legsAnimator.SetFloat("walking_speed", -movementInput.magnitude);
+                _legsAnimator.SetFloat("walking_speed", -speed);
                 _legsTransform.localRotation = Quaternion.Euler(0, 0, 180.0f + movementAngle);
             }
             else
             {
-                _legsAnimator.SetFloat("walking_speed", movementInput.magnitude);
+                _legsAnimator.SetFloat("walking_speed", speed);
                 _legsTransform.localRotation = Quaternion.Euler(0, 0, movementAngle);
             }
 
             worldMousePosition.z = 128;
             _topTransform.LookAt(worldMousePosition, Vector3.back);
-            
+
         }
         Mana = Mathf.Clamp(Mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
     }
