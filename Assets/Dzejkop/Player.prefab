@@ -652,8 +652,8 @@ GameObject:
   - component: {fileID: 3495095673372062128}
   - component: {fileID: 4975169254334940515}
   - component: {fileID: 6485519625448606320}
-  - component: {fileID: 433667790}
   - component: {fileID: 433667789}
+  - component: {fileID: 1586734796}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -692,7 +692,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.8
+  m_Radius: 1.5
 --- !u!114 &6485519625448606320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,35 +702,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7976402870429878300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef83705fc604f24bb34da19b5a0f3c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2702db081b8a6804cbc5f93ca13c38ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _legsAnimator: {fileID: 2614122828921411060}
   _legsTransform: {fileID: 7268698653544943514}
   _topTransform: {fileID: 5027009143386326842}
-  _speed: 1
-  _smoothTime: 0
---- !u!50 &433667790
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976402870429878300}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  _speed: 100
+  _dashSpeed: 50
+  _dashCooldown: 0
+  _dashCost: 0.33
+  mana: 1
+  _manaRegeneration: 0.15
 --- !u!114 &433667789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +730,27 @@ MonoBehaviour:
   occludingLayers:
     serializedVersion: 2
     m_Bits: 1
+--- !u!50 &1586734796
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976402870429878300}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8218801734365798891
 GameObject:
   m_ObjectHideFlags: 0
