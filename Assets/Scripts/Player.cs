@@ -52,6 +52,10 @@ public class Player : MonoBehaviour
         Assert.IsNotNull(_topTransform);
         _rigidbody = GetComponent<Rigidbody2D>();
         _lastDashTime = -_dashCooldown;
+        if (this.canDash)
+        {
+            AbilityDisplayController.Instance.ShowDashDisplay();
+        }
     }
 
     Vector2 GetDirection()
@@ -97,6 +101,7 @@ public class Player : MonoBehaviour
             }
 
             mana = Mathf.Clamp(mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
+
         }
     }
 
@@ -146,6 +151,7 @@ public class Player : MonoBehaviour
     public void TeachDash()
     {
         this.canDash = true;
+        AbilityDisplayController.Instance.ShowDashDisplay();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

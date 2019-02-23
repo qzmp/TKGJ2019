@@ -17,7 +17,8 @@ public class AbilityDisplay : MonoBehaviour
 
     public void Show()
     {
-
+        this.gameObject.SetActive(true);
+        this.transform.DOScale(0, 0.5f).From().SetEase(Ease.OutBounce);
     }
 
     public void Activate()
