@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             this.IsInLight |= CheckIfIsInLight(this.lightSourcesOnMap[i]);
             if (isInLight)
             {
-                _playerAudioController.PlayDetectedAudioSource();
+                this.lightSourcesOnMap[i].GetComponentInParent<AudioController>().PlayDetectedAudioSource();
             }
         }
     }
