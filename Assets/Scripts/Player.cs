@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private bool _doDash;
 
     public Action UpdateMana;
+    
 
     void Start()
     {
@@ -104,6 +105,11 @@ public class Player : MonoBehaviour
         {
             if (_dashCooldown > 0) //Wariant: cooldown dasha
             {
+                if (Time.time < _lastDashTime + _dashCooldown)
+                {
+                    AbilityDisplayController.Instance.SetDashDisplay((Time.time - _lastDashTime) / _dashCooldown);
+                }
+
                 if (_doDash && Time.time < _lastDashTime + _dashCooldown)
                 {
                     _doDash = false;
@@ -111,6 +117,7 @@ public class Player : MonoBehaviour
                 else if (_doDash)
                 {
                     _lastDashTime = Time.time;
+                    AbilityDisplayController.Instance.ActivateDashDisplay();
                     Debug.Log(_lastDashTime);
                 }
             }
