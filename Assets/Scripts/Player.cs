@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Player : MonoBehaviour
+public class _Player : MonoBehaviour
 {
     [SerializeField]
     private Animator _legsAnimator;
