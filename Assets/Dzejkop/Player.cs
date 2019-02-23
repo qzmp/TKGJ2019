@@ -18,15 +18,31 @@ public class Player : MonoBehaviour
     private float _speed;
 
     [SerializeField]
-    private float _smoothTime;
+    private float _dashSpeed;
+
+    [SerializeField]
+    private float _dashCooldown;
+    private float _lastDashTime;
+
+    [SerializeField]
+    private float _dashCost;
+
+    [SerializeField]
+    public float mana;
+
+    [SerializeField]
+    private float _manaRegeneration;
 
     private Vector3 _velocity;
+    private bool _doDash;
 
     void Start()
     {
         Assert.IsNotNull(_legsAnimator);
         Assert.IsNotNull(_legsTransform);
         Assert.IsNotNull(_topTransform);
+
+        _lastDashTime = -_dashCooldown;
     }
 
     Vector2 GetDirection()
@@ -61,27 +77,16 @@ public class Player : MonoBehaviour
             _legsTransform.localRotation = Quaternion.Euler(0, 0, movementAngle);
         }
 
-        #region Kamil
-        #region Rotation
         worldMousePosition.z = 128;
         _topTransform.LookAt(worldMousePosition, Vector3.back);
-        #endregion
 
-        //#region Movement
-        //if (movementInput.magnitude > 0)
-        //{
-        //    Vector3 targetPosition = transform.position + Quaternion.Euler(0, 0, movementAngle) * dirUp * _speed;
-        //    Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
-        //    //transform.position += _velocity;
-        //    Debug.Log(_velocity);
-        //    transform.position += _velocity * Time.deltaTime;
-        //}
-        //else
-        //{
-        //    _velocity = Vector3.zero;
-        //}
-        //#endregion
-        #endregion
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _doDash = true;
+        }
+
+        mana = Mathf.Clamp (mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
+        
     }
 
     private void FixedUpdate()
@@ -94,7 +99,29 @@ public class Player : MonoBehaviour
 
         if (GetMovementInput().magnitude > 0)
         {
-            rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * _speed, ForceMode2D.Force);
+            if (_dashCooldown > 0) //Wariant: cooldown dasha
+            {
+                if (_doDash && Time.time < _lastDashTime + _dashCooldown)
+                {
+                    _doDash = false;
+                }
+                else if (_doDash)
+                {
+                    _lastDashTime = Time.time;
+                    Debug.Log(_lastDashTime);
+                }
+            }
+
+            if(_dashCost > 0) //Wariant: mana
+            {
+                if (_doDash && mana < _dashCost)
+                    _doDash = false;
+                else if (_doDash)
+                    mana -= _dashCost;
+            }
+
+            rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * (_doDash ? _dashSpeed : _speed), (_doDash ? ForceMode2D.Impulse : ForceMode2D.Force));
+            _doDash = false;
         }
     }
 }

@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4748763151721664015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.295, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.006, y: -0.08, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 2165904681496577866}
   m_RootOrder: 0
@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 3447586887887567611}
   - component: {fileID: 5990253689376309526}
   - component: {fileID: 7328437999972029657}
+  - component: {fileID: 8372755995550321839}
   m_Layer: 0
   m_Name: sofa_frame
   m_TagString: Untagged
@@ -153,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 7328437999972029656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 2165904681496577866}
   m_RootOrder: 1
@@ -220,3 +221,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CastShadows: 1
   RecieveShadows: 1
+--- !u!60 &8372755995550321839
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328437999972029656}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 11.1, y: 4.15}
+    newSize: {x: 11.1, y: 4.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 5.5499997, y: 1.745}
+      - {x: 5.1, y: 2.075}
+      - {x: -5.1, y: 2.075}
+      - {x: -5.5499997, y: 1.745}
+      - {x: -5.5499997, y: -2.075}
+      - {x: -4.5885983, y: -2.075}
+      - {x: -4.599787, y: 1.1696079}
+      - {x: 4.611102, y: 1.1513544}
+      - {x: 4.630578, y: -2.0728078}
+      - {x: 5.5499997, y: -2.075}
