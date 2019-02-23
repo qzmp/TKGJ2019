@@ -11,10 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Transform _legsTransform;
 
+    [SerializeField]
+    private Transform _topTransform;
+
     void Start()
     {
         Assert.IsNotNull(_legsAnimator);
         Assert.IsNotNull(_legsTransform);
+        Assert.IsNotNull(_topTransform);
     }
 
     Vector2 GetDirection()
@@ -48,5 +52,12 @@ public class Player : MonoBehaviour
             _legsAnimator.SetFloat("walking_speed", movementInput.magnitude);
             _legsTransform.localRotation = Quaternion.Euler(0, 0, angle);
         }
+
+        #region Kamil
+        Vector3 flatMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log(flatMousePos + " | " + _topTransform.position);
+        flatMousePos.z = 128;
+        _topTransform.LookAt(flatMousePos, Vector3.back);
+        #endregion
     }
 }
