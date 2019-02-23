@@ -703,6 +703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef83705fc604f24bb34da19b5a0f3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _legsAnimator: {fileID: 2614122828921411060}
+  _legsTransform: {fileID: 7268698653544943514}
 --- !u!1 &8218801734365798891
 GameObject:
   m_ObjectHideFlags: 0
