@@ -705,6 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _legsAnimator: {fileID: 2614122828921411060}
   _legsTransform: {fileID: 7268698653544943514}
+  _topTransform: {fileID: 5027009143386326842}
 --- !u!1 &8218801734365798891
 GameObject:
   m_ObjectHideFlags: 0
