@@ -14,6 +14,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Transform _topTransform;
 
+    [SerializeField]
+    private float _speed;
+
+    [SerializeField]
+    private float _smoothTime;
+
+    private Vector3 _velocity;
+
     void Start()
     {
         Assert.IsNotNull(_legsAnimator);
@@ -35,29 +43,58 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Vector2 direction = Vector2.up;
+        Vector3 dirUp = Vector2.up;
         Vector2 movementInput = GetMovementInput();
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float movementAngle = Vector2.SignedAngle(dirUp, movementInput);
 
         _legsAnimator.SetBool("is_walking", movementInput.magnitude > 0);
 
-        float angle = Vector2.SignedAngle(direction, movementInput);
-
-        if (Mathf.Abs(angle) > 90f)
+        if (Mathf.Abs(movementAngle) > 90f)
         {
             _legsAnimator.SetFloat("walking_speed", -movementInput.magnitude);
-            _legsTransform.localRotation = Quaternion.Euler(0, 0, 180.0f + angle);
+            _legsTransform.localRotation = Quaternion.Euler(0, 0, 180.0f + movementAngle);
         }
         else
         {
             _legsAnimator.SetFloat("walking_speed", movementInput.magnitude);
-            _legsTransform.localRotation = Quaternion.Euler(0, 0, angle);
+            _legsTransform.localRotation = Quaternion.Euler(0, 0, movementAngle);
         }
 
         #region Kamil
-        Vector3 flatMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(flatMousePos + " | " + _topTransform.position);
-        flatMousePos.z = 128;
-        _topTransform.LookAt(flatMousePos, Vector3.back);
+        #region Rotation
+        worldMousePosition.z = 128;
+        _topTransform.LookAt(worldMousePosition, Vector3.back);
         #endregion
+
+        //#region Movement
+        //if (movementInput.magnitude > 0)
+        //{
+        //    Vector3 targetPosition = transform.position + Quaternion.Euler(0, 0, movementAngle) * dirUp * _speed;
+        //    Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
+        //    //transform.position += _velocity;
+        //    Debug.Log(_velocity);
+        //    transform.position += _velocity * Time.deltaTime;
+        //}
+        //else
+        //{
+        //    _velocity = Vector3.zero;
+        //}
+        //#endregion
+        #endregion
+    }
+
+    private void FixedUpdate()
+    {
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        Vector3 dirUp = Vector2.up;
+        Vector2 movementInput = GetMovementInput();
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float movementAngle = Vector2.SignedAngle(dirUp, movementInput);
+
+        if (GetMovementInput().magnitude > 0)
+        {
+            rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * _speed, ForceMode2D.Force);
+        }
     }
 }
