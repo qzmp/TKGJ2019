@@ -169,7 +169,6 @@ GameObject:
   - component: {fileID: 4555487623927642641}
   - component: {fileID: 8274801386755327711}
   - component: {fileID: 1771327501790974985}
-  - component: {fileID: 1771327501790974988}
   m_Layer: 0
   m_Name: creepy_shit
   m_TagString: Untagged
@@ -231,22 +230,6 @@ MonoBehaviour:
   max: 0.5
   min: 0.2
   lerp: 0.01
---- !u!114 &1771327501790974988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795849627250134583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15d8e0bea96cdd4db89e8592040a5de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swayRange: 0.2
-  swayLerp: 0.01
-  rotationLerp: 0
-  rotationRange: 0
 --- !u!1 &3130027218639228405
 GameObject:
   m_ObjectHideFlags: 0
