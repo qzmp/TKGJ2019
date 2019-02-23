@@ -31,6 +31,7 @@ public class EnemyController : MonoBehaviour
     private bool isPatrolling = true;
 
     private float normalSpeed;
+    private bool hasSeenPlayer = false;
 
 
     protected void Awake()
@@ -44,14 +45,18 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if(this.lightFlicker && player.IsInLight)
+        if (this.lightFlicker && player.IsInLight)
         {
             this.lightFlicker.SetIntensity(true);
-            if(IsFacingPlayer())
+            if (IsFacingPlayer() || this.hasSeenPlayer)
             {
-                if(this.isPatrolling)
+                this.hasSeenPlayer = true;
+                Debug.Log("moving towards player");
+                this.agent.destination = player.transform.position;
+
+                if (this.isPatrolling)
                 {
-                    this.agent.destination = player.transform.position;
+                    Debug.Log("enemy started moving toward player");
                     this.agent.SearchPath();
                     this.agent.maxSpeed = this.runningSpeed;
                 }
@@ -60,6 +65,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
+                Debug.Log("turning towards player");
                 this.isPatrolling = true;
                 this.agent.isStopped = true;
                 RotateTowardsPlayer();
@@ -69,6 +75,8 @@ public class EnemyController : MonoBehaviour
         {
             if(!this.isPatrolling)
             {
+                this.hasSeenPlayer = false;
+                Debug.Log("enemy started to return to patrol");
                 this.lightFlicker.SetIntensity(false);
                 this.agent.isStopped = false;
                 this.agent.maxSpeed = normalSpeed;
