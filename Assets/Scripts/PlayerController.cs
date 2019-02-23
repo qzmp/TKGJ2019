@@ -5,9 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField]
-    private bool isInLight;
+    [SerializeField] private PlayerAudioController _playerAudioController;
+    [SerializeField] private bool isInLight;
 
     public bool IsInLight {
         get { return this.isInLight; }
@@ -38,6 +37,10 @@ public class PlayerController : MonoBehaviour
         for(int i = 0; i < this.lightSourcesOnMap.Length; i++)
         {
             this.IsInLight |= CheckIfIsInLight(this.lightSourcesOnMap[i]);
+            if (isInLight)
+            {
+                _playerAudioController.PlayDetectedAudioSource();
+            }
         }
     }
 
@@ -73,7 +76,7 @@ public class PlayerController : MonoBehaviour
                 return true;
             }
 
-
+            
         }
         return false;
     }
