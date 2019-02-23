@@ -14,7 +14,7 @@ public class AudioController : MonoBehaviour
         StartCoroutine(ChangeWalkPitch());
     }
 
-    public void SetWalkAudio(Vector2 velocity)
+    public virtual void SetWalkAudio(Vector2 velocity)
     {
         if (velocity.magnitude > 0)
         {
