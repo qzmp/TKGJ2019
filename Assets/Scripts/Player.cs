@@ -23,8 +23,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    [SerializeField]
+    private float _dashSpeed;
 
+    [SerializeField]
+    private float _dashCooldown;
+    private float _lastDashTime;
 
+    [SerializeField]
+    private float _dashCost;
 
     //[SerializeField]
     public Action UpdateMana;
@@ -47,7 +54,9 @@ public class Player : MonoBehaviour
     private float _manaRegeneration;
 
     private Vector3 _velocity;
+    private bool _doDash;
 
+    public bool canDash = false;
 
     private Rigidbody2D _rigidbody;
     public static bool IsAlive = true;
@@ -60,7 +69,12 @@ public class Player : MonoBehaviour
         Assert.IsNotNull(_legsAnimator);
         Assert.IsNotNull(_legsTransform);
         Assert.IsNotNull(_topTransform);
-        this._rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _lastDashTime = -_dashCooldown;
+        if (this.canDash)
+        {
+            AbilityDisplayController.Instance.ShowDashDisplay();
+        }
     }
 
     Vector2 GetDirection()
@@ -68,7 +82,7 @@ public class Player : MonoBehaviour
         return Vector2.zero;
     }
 
-    public Vector2 GetMovementInput()
+    Vector2 GetMovementInput()
     {
         return new Vector2(
             Input.GetAxis("Horizontal"),
@@ -100,7 +114,11 @@ public class Player : MonoBehaviour
             worldMousePosition.z = 128;
             _topTransform.LookAt(worldMousePosition, Vector3.back);
 
-
+            if (Input.GetKeyDown(KeyCode.Space)/*FIXIT&& this.canDash*/)
+            {
+                _doDash = true;
+            }
+            _mana = Mathf.Clamp(_mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
         }
         Mana = Mathf.Clamp(Mana + _manaRegeneration * Time.deltaTime, 0.0f, 1.0f);
     }
@@ -123,9 +141,46 @@ public class Player : MonoBehaviour
 
             if (GetMovementInput().magnitude > 0)
             {
-                this._rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * _speed, ForceMode2D.Force);
-            }
+                if (_dashCooldown > 0) //Wariant: cooldown dasha
+                {
+                    AbilityDisplayController.Instance.SetDashDisplay((Time.time - _lastDashTime) / _dashCooldown);
+
+                    if (_doDash && Time.time < _lastDashTime + _dashCooldown)
+                    {
+                        _doDash = false;
+                    }
+                    else if (_doDash)
+                    {
+                        _lastDashTime = Time.time;
+                        AbilityDisplayController.Instance.ActivateDashDisplay();
+                        Debug.Log(_lastDashTime);
+                    }
+                }//if (_dashCooldown > 0) 
+
+                if (_dashCost > 0) //Wariant: mana
+                {
+                    if (_doDash && Mana < _dashCost)
+                    {
+                        _doDash = false;
+                    }
+                    else if (_doDash)
+                    {
+                        Mana -= _dashCost;
+                    }
+                }
+
+                this._rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * (_doDash ? _dashSpeed : _speed), (_doDash ? ForceMode2D.Impulse : ForceMode2D.Force));
+                _doDash = false;
+
+                AbilityDisplayController.Instance.ActivateDashDisplay();
+            }//if (GetMovementInput().magnitude > 0)
         }
+    }
+
+    public void TeachDash()
+    {
+        this.canDash = true;
+        AbilityDisplayController.Instance.ShowDashDisplay();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

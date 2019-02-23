@@ -659,7 +659,6 @@ GameObject:
   - component: {fileID: 1564264106}
   - component: {fileID: 1416336255}
   - component: {fileID: 8167986802951546882}
-  - component: {fileID: 7368390301833726549}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -711,12 +710,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702db081b8a6804cbc5f93ca13c38ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manaBar: {fileID: 0}
   _legsAnimator: {fileID: 2614122828921411060}
   _legsTransform: {fileID: 7268698653544943514}
   _topTransform: {fileID: 5027009143386326842}
   _speed: 100
-  _mana: 0
+  _dashSpeed: 50
+  _dashCooldown: 0
+  _dashCost: 0.33
+  mana: 1
   _manaRegeneration: 0.15
   _playerAudioController: {fileID: 1564264105}
 --- !u!114 &433667789
@@ -1068,21 +1069,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7976402870429878300}
   m_Enabled: 1
---- !u!114 &7368390301833726549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7976402870429878300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3683394eb21e33d43adf71a92c18fc9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dashSpeed: 50
-  dashCooldown: 5
-  canDash: 1
 --- !u!1 &8218801734365798891
 GameObject:
   m_ObjectHideFlags: 0
