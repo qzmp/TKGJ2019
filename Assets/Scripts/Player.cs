@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
     private bool _doDash;
 
     public Action UpdateMana;
+
+    public bool canDash = false;
+
     
 
     [SerializeField] private PlayerAudioController _playerAudioController;
@@ -86,7 +89,7 @@ public class Player : MonoBehaviour
         worldMousePosition.z = 128;
         _topTransform.LookAt(worldMousePosition, Vector3.back);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && this.canDash)
         {
             _doDash = true;
         }
@@ -133,5 +136,10 @@ public class Player : MonoBehaviour
             rigidbody.AddForce(Quaternion.Euler(0, 0, movementAngle) * dirUp * (_doDash ? _dashSpeed : _speed), (_doDash ? ForceMode2D.Impulse : ForceMode2D.Force));
             _doDash = false;
         }
+    }
+
+    public void TeachDash()
+    {
+        this.canDash = true;
     }
 }
