@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Vector2 = UnityEngine.Vector2;
 
 public class AudioController : MonoBehaviour
 {
@@ -12,12 +14,19 @@ public class AudioController : MonoBehaviour
         StartCoroutine(ChangeWalkPitch());
     }
 
-    public void SetLoopOnWalkAudio(bool value)
+    public void SetWalkAudio(Vector2 velocity)
     {
-        _walkAudioSource.loop = value;
-        if (value && !_walkAudioSource.isPlaying)
+        if (velocity.magnitude > 0)
         {
-            _walkAudioSource.Play();
+            _walkAudioSource.loop = true;
+            if (_walkAudioSource.loop && !_walkAudioSource.isPlaying)
+            {
+                _walkAudioSource.Play();
+            }
+        }
+        else
+        {
+            _walkAudioSource.loop = false;
         }
     }
 

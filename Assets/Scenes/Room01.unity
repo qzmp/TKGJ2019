@@ -1446,10 +1446,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d1a34f07499c741a3eb59ce799169d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioController: {fileID: 744825385}
   visibilityAngle: 90
   rotationSpeed: 180
   runningSpeed: 5
-  patrolTargets: []
+  patrolTargets:
+  - {fileID: 984188965}
+  - {fileID: 1958952907}
+  - {fileID: 1511219177}
+  - {fileID: 88102066}
   delay: 0
 --- !u!114 &744825379
 MonoBehaviour:

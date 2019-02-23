@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using System;
+using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
-
+    [SerializeField] private AudioController _audioController;
+    
     public float visibilityAngle = 90;
     public float rotationSpeed = 180;
     public float runningSpeed = 5;
@@ -20,10 +22,10 @@ public class EnemyController : MonoBehaviour
     private LightFlicker lightFlicker;
 
     /// <summary>Current target index</summary>
-    int currentTargetIndex;
+    private int currentTargetIndex;
 
     IAstarAI agent;
-    float switchTime = float.PositiveInfinity;
+    private float switchTime = float.PositiveInfinity;
 
     private PlayerController player;
     private bool isPatrolling = true;
@@ -95,8 +97,11 @@ public class EnemyController : MonoBehaviour
                 LookAround();
             }
 
-            currentTargetIndex = currentTargetIndex % patrolTargets.Length;
-            agent.destination = patrolTargets[currentTargetIndex].position;
+            if (patrolTargets.Length > 0)
+            {
+                currentTargetIndex = Random.Range(0,patrolTargets.Length-1);
+                agent.destination = patrolTargets[currentTargetIndex].position;
+            }
 
             if (search) agent.SearchPath();
         }
