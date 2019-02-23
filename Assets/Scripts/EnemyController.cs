@@ -65,11 +65,15 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            this.lightFlicker.SetIntensity(false);
-            this.agent.isStopped = false;
-            this.agent.maxSpeed = normalSpeed;
-            this.isPatrolling = true;
-            if (patrolTargets.Length == 0) return;
+            if(!this.isPatrolling)
+            {
+                this.lightFlicker.SetIntensity(false);
+                this.agent.isStopped = false;
+                this.agent.maxSpeed = normalSpeed;
+                this.isPatrolling = true;
+
+                currentTargetIndex = GetNearestPatrolTargetIndex();
+            }
 
             bool search = false;
 
@@ -85,6 +89,10 @@ public class EnemyController : MonoBehaviour
                 currentTargetIndex = currentTargetIndex + 1;
                 search = true;
                 switchTime = float.PositiveInfinity;
+            }
+            else if (!float.IsPositiveInfinity(switchTime))
+            {
+                LookAround();
             }
 
             currentTargetIndex = currentTargetIndex % patrolTargets.Length;
@@ -109,6 +117,11 @@ public class EnemyController : MonoBehaviour
         this.transform.rotation = Quaternion.Euler(eulerRot);
     }
 
+    private void LookAround()
+    {
+        Debug.Log("lookingAround");
+        //anim?
+    }
 
     private bool IsFacingPlayer()
     {
