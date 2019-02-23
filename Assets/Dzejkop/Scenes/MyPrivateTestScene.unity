@@ -7631,15 +7631,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1844703602}
     m_Modifications:
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Name
-      value: Light (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 4142126959532110318, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7672,6 +7663,15 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Name
+      value: Light (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 4142126959532110318, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 11443418, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: lightColor.r
       value: 0.8820755
