@@ -66,7 +66,7 @@ public class StunSpell : MonoBehaviour
         AbilityDisplayController.Instance.ActivateStunDisplay();
         this._lastUse = Time.time;
 
-        Debug.Log(Time.time + ", ogluszonych: " + stunnedEnemiesColliders.Length);
+        Debug.Log(Time.time + ", stunned: " + stunnedEnemiesColliders.Length);
 
         foreach (Collider2D collider in stunnedEnemiesColliders)
         {
