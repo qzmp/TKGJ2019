@@ -9,7 +9,7 @@ using DG.Tweening;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private AudioController _audioController;
-
+    [SerializeField] private float _alertRange;
     public float visibilityAngle = 90;
     public float rotationSpeed = 180;
     public float runningSpeed = 5;
@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
                 this.hasSeenPlayer = true;
                 Debug.Log("moving towards player");
 
-                if(player.IsInLight)
+                if(player.IsInLight && Vector3.Distance(transform.position, player.transform.position) < _alertRange)
                 {
                     this.agent.destination = player.transform.position;
                 }

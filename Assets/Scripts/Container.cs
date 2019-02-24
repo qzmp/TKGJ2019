@@ -26,11 +26,7 @@ public class Container : MonoBehaviour, IOpenable
     {
         Assert.IsNotNull(_animator);
         Assert.IsNotNull(_spawnPoint);
-        try
-        {
-            Assert.IsNotNull(_itemToSpawnPrefab);
-        }
-        catch { }
+        //Assert.IsNotNull(_itemToSpawnPrefab);
     }
 
     public void Open()

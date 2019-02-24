@@ -937,9 +937,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioController: {fileID: 7795248925275965960}
-  visibilityAngle: 90
+  _alertRange: 20
+  visibilityAngle: 60
   rotationSpeed: 2
-  runningSpeed: 18
+  runningSpeed: 5
   patrolTargets:
   - {fileID: 0}
   - {fileID: 0}
@@ -1333,14 +1334,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8673985016361311129}
     m_Modifications:
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Name
-      value: Light (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.35
@@ -1384,6 +1377,14 @@ PrefabInstance:
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Name
+      value: Light (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
