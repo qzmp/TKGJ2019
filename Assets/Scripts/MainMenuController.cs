@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 using Random = UnityEngine.Random;
 
 public class MainMenuController : MonoBehaviour
@@ -34,21 +35,24 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     private IEnumerator IntroAnim()
     {
-        while (IntroText.color != blackAlphaOne)
-        {
-            IntroText.color = Color.Lerp(IntroText.color, blackAlphaOne, Time.time/10f);
-            yield return null;
-        }
-        while (IntroText.transform.position != MenuTitleText.transform.position)
-        {
-            IntroText.transform.position = Vector3.Lerp(IntroText.transform.position, MenuTitleText.transform.position, Time.time/40f);
-            IntroText.fontSize = (int)Mathf.Lerp((float)IntroText.fontSize, (float)MenuTitleText.fontSize, Time.time/40f);
-            yield return null;
-        }
+        bool titleShowed = false;
+        bool titleMoved = false;
+        
+        IntroText.DOColor(blackAlphaOne, 3f).onComplete += () => titleShowed = true;
+        yield return new WaitUntil(()=>titleShowed);
+        DOTween.To(SetFontSize,(float)IntroText.fontSize, (float)MenuTitleText.fontSize, 3f);
+        IntroText.transform.DOMove(MenuTitleText.transform.position,3f).onComplete += () => titleMoved = true;
+        yield return new WaitUntil(()=>titleMoved);
         MenuTitleText.gameObject.SetActive(true);
         IntroGameObject.SetActive(false);
         MenuPanel.SetActive(true);
     }
+
+    public void SetFontSize(float value)
+    {
+        IntroText.fontSize = (int)value;
+    }
+    
 
     public void Play()
     {
