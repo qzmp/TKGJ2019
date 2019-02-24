@@ -53,6 +53,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
+        CheckForPlayerCollision();
         if (this.lightFlicker && IsPlayerInOwnLight()|| (this.hasSeenPlayer && !this.agent.reachedDestination && !HasBeenChasingLong()))
         {
             if (this.hasBeenPatrolling)
@@ -156,6 +157,15 @@ public class EnemyController : MonoBehaviour
             _audioController.SetWalkAudio(agent.velocity);
         }
         catch { }
+    }
+    private void CheckForPlayerCollision()
+    {
+        if(Vector3.Distance(this.player.transform.position, this.transform.position) < 3)
+        {
+            this.player.GetComponent<Player>().KillPlayer();
+            this.agent.canMove = false;
+        }
+
     }
 
     private bool IsPlayerInOwnLight()
