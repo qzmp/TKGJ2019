@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class PlayerAudioController : AudioController
 {
@@ -31,6 +32,17 @@ public class PlayerAudioController : AudioController
         {
             _walkAudioSource.Stop();
             _deathAudioSource.Play();
+            StartCoroutine(WaitForDeathAudioEnd(3));
         }
+    }
+
+    private IEnumerator WaitForDeathAudioEnd(float time)
+    {
+        float startTime = Time.time;
+        while(startTime + time > Time.time)
+        {
+            yield return null;
+        }
+        SceneManager.LoadScene(3);
     }
 }
