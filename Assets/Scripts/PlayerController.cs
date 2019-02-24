@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     private bool CheckIfIsInLight(LightSource source)
     {
         float distToPlayer = Vector3.Distance(source.transform.position, this.transform.position);
-        if (source.on && distToPlayer < source.size)
+        if (source.on && distToPlayer < source.size / 2)
         {
             Vector3 dirToLight = source.transform.position - this.transform.position;
             Vector3 rightVector = Vector3.Normalize(Quaternion.Euler(0, 0, 90) * dirToLight);
