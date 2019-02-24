@@ -36,13 +36,13 @@ public class MainMenuController : MonoBehaviour
     {
         while (IntroText.color != blackAlphaOne)
         {
-            IntroText.color = Color.Lerp(IntroText.color, blackAlphaOne, Time.time/10f);
+            IntroText.color = Color.Lerp(IntroText.color, blackAlphaOne, Time.deltaTime * 2);
             yield return null;
         }
         while (IntroText.transform.position != MenuTitleText.transform.position)
         {
-            IntroText.transform.position = Vector3.Lerp(IntroText.transform.position, MenuTitleText.transform.position, Time.time/40f);
-            IntroText.fontSize = (int)Mathf.Lerp((float)IntroText.fontSize, (float)MenuTitleText.fontSize, Time.time/40f);
+            IntroText.transform.position = Vector3.Lerp(IntroText.transform.position, MenuTitleText.transform.position, Time.deltaTime * 40);
+            IntroText.fontSize = (int)Mathf.Lerp((float)IntroText.fontSize, (float)MenuTitleText.fontSize, Time.deltaTime * 4);
             yield return null;
         }
         MenuTitleText.gameObject.SetActive(true);
