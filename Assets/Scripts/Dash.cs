@@ -37,7 +37,7 @@ public class Dash : MonoBehaviour
     {
         AbilityDisplayController.Instance.SetDashDisplay((Time.time - this.lastDashTime) / this.dashCooldown);
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsDashReady())
+        if (Input.GetKeyDown(KeyCode.Space) && IsDashReady() && Player.IsAlive)
         {
             DoDash();
         }

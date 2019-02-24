@@ -1166,10 +1166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stunDuration: 3
-  _stunRange: 100
+  _stunRange: 10
   _stunCooldown: 1
-  _stunRadius: 100
+  _stunRadius: 4
   canStun: 1
+  _stunPrefab: {fileID: 759862799438031674, guid: a4870ff1b23fb594e8432d69c9a18ec2,
+    type: 3}
 --- !u!114 &5498371772513449337
 MonoBehaviour:
   m_ObjectHideFlags: 0

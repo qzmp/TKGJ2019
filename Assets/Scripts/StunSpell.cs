@@ -23,6 +23,9 @@ public class StunSpell : MonoBehaviour
 
     public bool canStun;
 
+    public GameObject _stunPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,7 @@ public class StunSpell : MonoBehaviour
     {
         AbilityDisplayController.Instance.SetStunDisplay((Time.time - this._lastUse) / this._stunCooldown);
 
-        if (Input.GetAxis("Fire2") != 0 && canStun && IsStunReady())
+        if (Input.GetAxis("Fire2") != 0 && canStun && IsStunReady() && Player.IsAlive)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -62,6 +65,8 @@ public class StunSpell : MonoBehaviour
 
     public void Stun(Vector3 point)
     {
+        Transform stunSpell = Instantiate(_stunPrefab, point, Quaternion.identity).transform;
+
         Collider2D[] stunnedEnemiesColliders = Physics2D.OverlapCircleAll(point, _stunRadius, LayerMask.GetMask("Enemy"));//.OverlapSphere(point, _stunRadius/*, LayerMask.GetMask("Enemy"), QueryTriggerInteraction.Collide*/);
         AbilityDisplayController.Instance.ActivateStunDisplay();
         this._lastUse = Time.time;
