@@ -41,7 +41,7 @@ public class LightFlicker : MonoBehaviour
 
     private void PulseUp()
     {
-        float maxIntensity = this.highIntensity ? 5 : 0.5f;
+        float maxIntensity = this.highIntensity ? 5 : 2f;
         float duration = this.highIntensity ? this.highDuration : this.lowDuration;
 
         this.currentTween = DOTween.To(() => light.intensity, x => light.intensity = x, maxIntensity, duration).OnComplete(PulseDown).SetEase(Ease.InOutExpo);
@@ -49,7 +49,7 @@ public class LightFlicker : MonoBehaviour
 
     private void PulseDown()
     {
-        float maxIntensity = this.highIntensity ? 4 : 0.5f;
+        float maxIntensity = this.highIntensity ? 4 : 1.5f;
         float duration = this.highIntensity ? this.highDuration : this.lowDuration;
 
         this.currentTween = DOTween.To(() => light.intensity, x => light.intensity = x, maxIntensity, duration).OnComplete(PulseUp).SetEase(Ease.InOutExpo);
