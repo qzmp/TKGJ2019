@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
 {
     public GameObject InstructionsGameObject;
     public GameObject CreditsGameObject;
+    public GameObject AboutGameObject;
     public GameObject IntroGameObject;
     public GameObject MenuPanel;
     public Text IntroText;
@@ -57,12 +58,21 @@ public class MainMenuController : MonoBehaviour
     public void Instructions()
     {
         CreditsGameObject.SetActive(false);
-        InstructionsGameObject.SetActive(true);
+        AboutGameObject.SetActive(false);
+        InstructionsGameObject.SetActive(true);   
+    }
+    
+    public void About()
+    {
+        CreditsGameObject.SetActive(false);
+        InstructionsGameObject.SetActive(false);
+        AboutGameObject.SetActive(true);
     }
 
     public void Credits()
     {
         InstructionsGameObject.SetActive(false);
+        AboutGameObject.SetActive(false);
         CreditsGameObject.SetActive(true);
     }
 
