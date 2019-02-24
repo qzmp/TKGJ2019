@@ -27,6 +27,7 @@ public class Pickup : MonoBehaviour
 
     private void OnPickupSound()
     {
-        pickupAudioSource.Play();
+        if (pickupAudioSource != null)
+            pickupAudioSource.Play();
     }
 }
