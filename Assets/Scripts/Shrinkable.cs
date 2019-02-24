@@ -42,6 +42,14 @@ public class Shrinkable : MonoBehaviour
         _collider = GetComponent<Collider2D>();
     }
 
+    public void OnHitByLight(bool light)
+    {
+        if (light)
+        {
+            Shrink();
+        }
+    }
+
     public void Shrink()
     {
         if (_isShrinked)
@@ -53,20 +61,15 @@ public class Shrinkable : MonoBehaviour
         _currentTween = DOTween.To(() => _currentScale, ApplyScale, 0f, shrinkingTimeSeconds).OnComplete(() => OnComplete(true) ).SetEase(Ease.InOutExpo);
     }
 
-    public void UnShrink()
-    {
-        if (!_isShrinked)
-        {
-            Debug.LogWarning("Attempting to unshrink an object that is not shrinked");
-            return;
-        }
-        _currentTween = DOTween.To(() => _currentScale, ApplyScale, 1f, shrinkingTimeSeconds).OnComplete(() => OnComplete(false) ).SetEase(Ease.InOutExpo);
-    }
-
     private void OnComplete(bool isShrinked)
     {
         _isShrinked = isShrinked;
         _collider.enabled = !isShrinked;
+
+        if (isShrinked)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void ApplyScale(float x)

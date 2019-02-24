@@ -4,11 +4,12 @@ using UnityEngine;
 using Pathfinding;
 using System;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private AudioController _audioController;
-
+    [SerializeField] private float _alertRange;
     public float visibilityAngle = 90;
     public float rotationSpeed = 180;
     public float runningSpeed = 5;
@@ -33,6 +34,10 @@ public class EnemyController : MonoBehaviour
     private float normalSpeed;
     private bool hasSeenPlayer = false;
 
+    private Tween tween;
+
+    public float chaseTime = 5;
+    private float chaseStartTime;
 
     protected void Awake()
     {
@@ -45,7 +50,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if (this.lightFlicker && player.IsInLight)
+        if (this.lightFlicker && player.IsInLight || (this.hasSeenPlayer && !this.agent.reachedDestination && !HasBeenChasingLong()))
         {
             if (this.hasBeenPatrolling)
             {
@@ -53,20 +58,36 @@ public class EnemyController : MonoBehaviour
                 this.agent.SearchPath();
                 this.agent.maxSpeed = this.runningSpeed;
                 this.hasBeenPatrolling = false;
+                if (this.tween != null)
+                {
+                    this.tween.Kill();
+                    this.tween = null;
+
+                }
+            }
+
+            if(!player.IsInLight && float.IsPositiveInfinity(this.chaseStartTime))
+            {
+                this.chaseStartTime = Time.time;
             }
 
             this.lightFlicker.SetIntensity(true);
             if (IsFacingPlayer() || this.hasSeenPlayer)
             {
+                //if(!this.hasSeenPlayer)
+                //{
+                //    this.chaseStartTime = Time.time;
+                //}
                 this.hasSeenPlayer = true;
                 Debug.Log("moving towards player");
 
-                if(player.IsInLight)
+                if(player.IsInLight && Vector3.Distance(transform.position, player.transform.position) < _alertRange)
                 {
                     this.agent.destination = player.transform.position;
                 }
 
                 this.agent.isStopped = false;
+ 
             }
             else
             {
@@ -88,6 +109,7 @@ public class EnemyController : MonoBehaviour
 
                 currentTargetIndex = GetNearestPatrolTargetIndex();
                 switchTime = Time.time + delay;
+                this.chaseStartTime = float.PositiveInfinity;
 
             }
 
@@ -106,6 +128,11 @@ public class EnemyController : MonoBehaviour
                 search = true;
                 switchTime = float.PositiveInfinity;
                 this.agent.isStopped = false;
+                if(this.tween != null)
+                {
+                    this.tween.Kill();
+                    this.tween = null;
+                }
             }
             else if (!float.IsPositiveInfinity(switchTime))
             {
@@ -128,6 +155,11 @@ public class EnemyController : MonoBehaviour
         catch { }
     }
 
+    private bool HasBeenChasingLong()
+    {
+        return this.chaseStartTime + this.chaseTime < Time.time;
+    }
+
     private void RotateTowardsPlayer()
     {
         //find the vector pointing from our position to the target
@@ -146,6 +178,17 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("lookingAround");
         //anim?
+        Vector3 startingRotation = this.transform.rotation.eulerAngles;
+        if(this.tween == null)
+        {
+            Rotate(startingRotation, true);
+        }
+    }
+
+    private void Rotate(Vector3 startingRotation, bool right)
+    {
+        this.tween = this.transform.DORotate(new Vector3(0, 0, startingRotation.z + (right ? 45 : -45)), 1).SetEase(Ease.InOutCirc).OnComplete(() => Rotate(startingRotation, !right));
+
     }
 
     private bool IsFacingPlayer()

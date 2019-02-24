@@ -822,6 +822,7 @@ GameObject:
   - component: {fileID: 9043147763074921394}
   - component: {fileID: 1063954797}
   - component: {fileID: 1263209969279874723}
+  - component: {fileID: 1519142873}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -937,13 +938,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioController: {fileID: 7795248925275965960}
-  visibilityAngle: 90
+  _alertRange: 20
+  visibilityAngle: 60
   rotationSpeed: 2
-  runningSpeed: 25
+  runningSpeed: 5
   patrolTargets:
   - {fileID: 0}
   - {fileID: 0}
   delay: 5
+  chaseTime: 2
 --- !u!114 &8673985016361311134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,12 +1230,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
 --- !u!114 &1263209969279874723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,6 +1250,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _legsAnimator: {fileID: 1394194397909394323}
   _topAnimator: {fileID: 2614375363325275699}
+--- !u!50 &1519142873
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673985016361311109}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9179625891259277541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,21 +1357,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8673985016361311129}
     m_Modifications:
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Name
-      value: Light (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.92
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1384,6 +1400,14 @@ PrefabInstance:
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Name
+      value: Light (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}

@@ -5,14 +5,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class LightSensitive : MonoBehaviour
 {
     private static LightSource[] _lightSources = null;
 
     public float delay = 1f;
 
-    private CircleCollider2D _collider;
+    public float radius = 1f;
 
     private bool _isInLight = false;
 
@@ -30,8 +29,6 @@ public class LightSensitive : MonoBehaviour
 
     void Start()
     {
-        _collider = GetComponent<CircleCollider2D>();
-
         if (_lightSources == null)
         {
             _lightSources = FindObjectsOfType<LightSource>();
@@ -58,7 +55,6 @@ public class LightSensitive : MonoBehaviour
 
     private bool CheckIsInLight()
     {
-        Debug.Log("Checking if in light...");
         foreach (var lightSource in _lightSources)
         {
             if (CheckLightSource(lightSource))
@@ -72,19 +68,17 @@ public class LightSensitive : MonoBehaviour
 
     private bool CheckLightSource(LightSource source)
     {
-        Debug.Log("Checking light source " + source.gameObject.name);
         float distance = Vector3.Distance(source.transform.position, transform.position);
         if (!source.on || distance > source.size)
         {
-            Debug.Log("Light source is off or out of range, returning false");
             return false;
         }
 
         Vector3 dirToLight = source.transform.position - this.transform.position;
         Vector3 rightVector = Vector3.Normalize(Quaternion.Euler(0, 0, 90) * dirToLight);
         Vector3 leftVector = -rightVector;
-        Vector3 rightPoint = this.transform.position + rightVector * this._collider.radius;
-        Vector3 leftPoint = this.transform.position + leftVector * this._collider.radius;
+        Vector3 rightPoint = this.transform.position + rightVector * radius;
+        Vector3 leftPoint = this.transform.position + leftVector * radius;
 
         Vector3 dirToRightPoint = rightPoint - source.transform.position;
         Vector3 dirToLeftPoint = leftPoint - source.transform.position;
@@ -96,21 +90,17 @@ public class LightSensitive : MonoBehaviour
 
         if (!Physics2D.Raycast(source.transform.position, dirToRightPoint, distance, this.occludingLayers))
         {
-            Debug.Log("A raycast succeded returning true");
             return true;
         }
         if (!Physics2D.Raycast(source.transform.position, dirToLeftPoint, distance, this.occludingLayers))
         {
-            Debug.Log("A raycast succeded returning true");
             return true;
         }
         if (!Physics2D.Raycast(source.transform.position, -dirToLight, distance, this.occludingLayers))
         {
-            Debug.Log("A raycast succeded returning true");
             return true;
         }
 
-        Debug.Log("All raycasts failed returning false");
         return false;
     }
 }
