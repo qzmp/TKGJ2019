@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -51,13 +52,14 @@ public class Player : MonoBehaviour
 
 
     private Rigidbody2D _rigidbody;
-    public static bool IsAlive = true;
+    public static bool IsAlive;
 
     [SerializeField]
     private PlayerAudioController _playerAudioController;
 
     void Start()
     {
+        IsAlive = true;
         Assert.IsNotNull(_legsAnimator);
         Assert.IsNotNull(_topAnimator);
         Assert.IsNotNull(_legsTransform);
@@ -159,7 +161,10 @@ public class Player : MonoBehaviour
     {
         IsAlive = false;
         _playerAudioController.PlayDeathAudioSource();
-        _legsTransform.gameObject.SetActive(false);
-        _topTransform.gameObject.SetActive(false);
+        this.transform.DOScale(0, 0.1f).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            _legsTransform.gameObject.SetActive(false);
+            _topTransform.gameObject.SetActive(false);
+        });
     }
 }

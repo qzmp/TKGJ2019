@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 public class LightSensitive : MonoBehaviour
 {
-    private static LightSource[] _lightSources = null;
+    private LightSource[] _lightSources = null;
 
     public float delay = 1f;
 
