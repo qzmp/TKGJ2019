@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if (this.lightFlicker && player.IsInLight)
+        if (this.lightFlicker && player.IsInLight || (this.hasSeenPlayer && !this.agent.reachedDestination))
         {
             if (this.hasBeenPatrolling)
             {
@@ -55,6 +55,12 @@ public class EnemyController : MonoBehaviour
                 this.agent.SearchPath();
                 this.agent.maxSpeed = this.runningSpeed;
                 this.hasBeenPatrolling = false;
+                if (this.tween != null)
+                {
+                    this.tween.Kill();
+                    this.tween = null;
+
+                }
             }
 
             this.lightFlicker.SetIntensity(true);
@@ -69,12 +75,7 @@ public class EnemyController : MonoBehaviour
                 }
 
                 this.agent.isStopped = false;
-                if (this.tween != null)
-                {
-                    this.tween.Kill();
-                    this.tween = null;
-
-                }
+ 
             }
             else
             {
