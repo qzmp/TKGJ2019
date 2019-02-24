@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -161,10 +162,16 @@ public class Player : MonoBehaviour
     {
         IsAlive = false;
         _playerAudioController.PlayDeathAudioSource();
-        this.transform.DOScale(0, 0.1f).SetEase(Ease.InCubic).OnComplete(() =>
+        this.transform.DOScale(0, 0.2f).SetEase(Ease.InCubic).OnComplete(() =>
         {
             _legsTransform.gameObject.SetActive(false);
             _topTransform.gameObject.SetActive(false);
         });
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene(2);
+
     }
 }
