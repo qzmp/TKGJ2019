@@ -789,21 +789,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8673985015724728340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8673985015761597119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7b815d7b9ca1e4b8a6cb080a2002b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onSprite: {fileID: 0}
-  offSprite: {fileID: 0}
-  lampEditor: {fileID: 0}
 --- !u!114 &8673985015724728342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,19 +803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highDuration: 0.5
   lowDuration: 2
---- !u!114 &8673985015724728811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8673985015761597119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fbf69db3b2b993499311819c6d1d8f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragRadius: 1
 --- !u!1 &8673985016361311109
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,12 +887,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.27
+  radius: 1.5
   height: 0.01
-  repathRate: 0.5
+  repathRate: 0.1
   canSearch: 1
   canMove: 1
-  maxSpeed: 1.81
+  maxSpeed: 2
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -931,12 +903,12 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.05
-  pickNextWaypointDist: 0.44
-  endReachedDistance: 0.02
+  slowdownDistance: 1
+  pickNextWaypointDist: 2.44
+  endReachedDistance: 0.5
   alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 0
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 0
 --- !u!114 &8673985016361311108
 MonoBehaviour:
@@ -967,10 +939,8 @@ MonoBehaviour:
   _audioController: {fileID: 7795248925275965960}
   visibilityAngle: 90
   rotationSpeed: 2
-  runningSpeed: 5
+  runningSpeed: 25
   patrolTargets:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   delay: 5
@@ -1417,15 +1387,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
---- !u!4 &8673985015761214419 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41,
-    type: 3}
-  m_PrefabInstance: {fileID: 8673985015761422743}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8673985015761597119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41,
+    type: 3}
+  m_PrefabInstance: {fileID: 8673985015761422743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8673985015761214419 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41,
     type: 3}
   m_PrefabInstance: {fileID: 8673985015761422743}
   m_PrefabAsset: {fileID: 0}

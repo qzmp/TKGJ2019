@@ -28,9 +28,10 @@ public class EnemyController : MonoBehaviour
     private float switchTime = float.PositiveInfinity;
 
     private PlayerController player;
-    private bool isPatrolling = true;
+    private bool hasBeenPatrolling = true;
 
     private float normalSpeed;
+    private bool hasSeenPlayer = false;
 
 
     protected void Awake()
@@ -44,37 +45,50 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if(this.lightFlicker && player.IsInLight)
+        if (this.lightFlicker && player.IsInLight)
         {
-            this.lightFlicker.SetIntensity(true);
-            if(IsFacingPlayer())
+            if (this.hasBeenPatrolling)
             {
-                if(this.isPatrolling)
+                Debug.Log("enemy started moving toward player");
+                this.agent.SearchPath();
+                this.agent.maxSpeed = this.runningSpeed;
+                this.hasBeenPatrolling = false;
+            }
+
+            this.lightFlicker.SetIntensity(true);
+            if (IsFacingPlayer() || this.hasSeenPlayer)
+            {
+                this.hasSeenPlayer = true;
+                Debug.Log("moving towards player");
+
+                if(player.IsInLight)
                 {
                     this.agent.destination = player.transform.position;
-                    this.agent.SearchPath();
-                    this.agent.maxSpeed = this.runningSpeed;
                 }
-                this.isPatrolling = false;
+
                 this.agent.isStopped = false;
             }
             else
             {
-                this.isPatrolling = true;
+                Debug.Log("turning towards player");
                 this.agent.isStopped = true;
                 RotateTowardsPlayer();
             }
         }
         else
         {
-            if(!this.isPatrolling)
+            if(!this.hasBeenPatrolling)
             {
+                this.hasSeenPlayer = false;
+                Debug.Log("enemy started to return to patrol");
                 this.lightFlicker.SetIntensity(false);
-                this.agent.isStopped = false;
+                this.agent.isStopped = true;
                 this.agent.maxSpeed = normalSpeed;
-                this.isPatrolling = true;
+                this.hasBeenPatrolling = true;
 
                 currentTargetIndex = GetNearestPatrolTargetIndex();
+                switchTime = Time.time + delay;
+
             }
 
             bool search = false;
@@ -91,6 +105,7 @@ public class EnemyController : MonoBehaviour
                 currentTargetIndex = currentTargetIndex + 1;
                 search = true;
                 switchTime = float.PositiveInfinity;
+                this.agent.isStopped = false;
             }
             else if (!float.IsPositiveInfinity(switchTime))
             {
@@ -99,7 +114,7 @@ public class EnemyController : MonoBehaviour
 
             if (patrolTargets.Length > 0)
             {
-                currentTargetIndex = Random.Range(0,patrolTargets.Length-1);
+                currentTargetIndex = currentTargetIndex % this.patrolTargets.Length;
                 agent.destination = patrolTargets[currentTargetIndex].position;
             }
 

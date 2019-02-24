@@ -9,6 +9,8 @@ public class AbilityDisplay : MonoBehaviour
     private Image image;
     public Image cooldownImage;
 
+    public bool isReversed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,13 @@ public class AbilityDisplay : MonoBehaviour
         {
             this.image.DOFade(1, 0.5f);
         }
-        this.cooldownImage.fillAmount = 1 - value;
+        if (isReversed)
+        {
+            this.cooldownImage.fillAmount = value;
+        }
+        else
+        {
+            this.cooldownImage.fillAmount = 1 - value;
+        }
     }
 }
