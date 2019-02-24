@@ -6,6 +6,7 @@ using DG.Tweening;
 
 public class Pickup : MonoBehaviour
 {
+    public AudioSource pickupAudioSource;
     public UnityEvent onPickup;
     public bool activated = false;
 
@@ -17,9 +18,15 @@ public class Pickup : MonoBehaviour
             if (onPickup != null)
             {
                 onPickup.Invoke();
+                OnPickupSound();
             }
 
             this.transform.DOScale(0, 1).OnComplete(() => Destroy(this.gameObject)).SetEase(Ease.InCubic);
         }
+    }
+
+    private void OnPickupSound()
+    {
+        pickupAudioSource.Play();
     }
 }
