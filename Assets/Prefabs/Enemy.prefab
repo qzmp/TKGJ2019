@@ -939,7 +939,7 @@ MonoBehaviour:
   _audioController: {fileID: 7795248925275965960}
   visibilityAngle: 90
   rotationSpeed: 2
-  runningSpeed: 25
+  runningSpeed: 18
   patrolTargets:
   - {fileID: 0}
   - {fileID: 0}
