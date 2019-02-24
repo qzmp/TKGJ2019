@@ -39,7 +39,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfIsInLight()
     {
+        bool wasInLight = this.IsInLight;
         this.IsInLight = false;
+        
         Dictionary<LightSource, bool> newLightStatuses = new Dictionary<LightSource, bool>();
         foreach(var x in this.lightSourcesOnMap)
         {
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
             this.IsInLight |= isInLight;
             newLightStatuses.Add(x.Key, isInLight);
 
-            if (isInLight && Player.IsAlive)
+            if (isInLight && Player.IsAlive && !wasInLight)
             {
                 x.Key.GetComponentInParent<AudioController>().PlayDetectedAudioSource();
                 MainCamera.Instance.OnInLight();
