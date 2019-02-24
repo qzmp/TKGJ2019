@@ -36,6 +36,9 @@ public class EnemyController : MonoBehaviour
 
     private Tween tween;
 
+    public float chaseTime = 5;
+    private float chaseStartTime;
+
     protected void Awake()
     {
         agent = GetComponent<IAstarAI>();
@@ -47,7 +50,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if (this.lightFlicker && player.IsInLight || (this.hasSeenPlayer && !this.agent.reachedDestination))
+        if (this.lightFlicker && player.IsInLight || (this.hasSeenPlayer && !this.agent.reachedDestination && !HasBeenChasingLong()))
         {
             if (this.hasBeenPatrolling)
             {
@@ -63,9 +66,18 @@ public class EnemyController : MonoBehaviour
                 }
             }
 
+            if(!player.IsInLight && float.IsPositiveInfinity(this.chaseStartTime))
+            {
+                this.chaseStartTime = Time.time;
+            }
+
             this.lightFlicker.SetIntensity(true);
             if (IsFacingPlayer() || this.hasSeenPlayer)
             {
+                //if(!this.hasSeenPlayer)
+                //{
+                //    this.chaseStartTime = Time.time;
+                //}
                 this.hasSeenPlayer = true;
                 Debug.Log("moving towards player");
 
@@ -97,6 +109,7 @@ public class EnemyController : MonoBehaviour
 
                 currentTargetIndex = GetNearestPatrolTargetIndex();
                 switchTime = Time.time + delay;
+                this.chaseStartTime = float.PositiveInfinity;
 
             }
 
@@ -140,6 +153,11 @@ public class EnemyController : MonoBehaviour
             _audioController.SetWalkAudio(agent.velocity);
         }
         catch { }
+    }
+
+    private bool HasBeenChasingLong()
+    {
+        return this.chaseStartTime + this.chaseTime < Time.time;
     }
 
     private void RotateTowardsPlayer()
