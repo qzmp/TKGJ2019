@@ -30,13 +30,13 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (walkingSpeed < 0.1f)
         {
-            _legsAnimator.SetBool("is_wallking", false);
+            //_legsAnimator.SetBool("is_wallking", false);
             _topAnimator.SetBool("is_walking", false);
             _topAnimator.SetBool("is_idle", true);
         }
         else
         {
-            _legsAnimator.SetBool("is_wallking", true);
+           // _legsAnimator.SetBool("is_wallking", true);
             _topAnimator.SetBool("is_walking", true);
             _topAnimator.SetBool("is_idle", false);
 

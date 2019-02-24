@@ -194,7 +194,7 @@ public class EnemyController : MonoBehaviour
 
     private void LookAround()
     {
-        Debug.Log("lookingAround");
+        //Debug.Log("lookingAround");
         //anim?
         Vector3 startingRotation = this.transform.rotation.eulerAngles;
         if(this.tween == null)

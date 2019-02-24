@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             _topAnimator.SetBool("is_walking", speed >= 0.1f);
             _topAnimator.SetFloat("walking_speed", speed);
 
-            Debug.Log(movementAngle);
+            //Debug.Log(movementAngle);
             if (movementInput != Vector2.zero)
             {
                 _legsTransform.rotation = Quaternion.Slerp(_legsTransform.rotation, Quaternion.Euler(0, 0, movementAngle), 0.3f);
