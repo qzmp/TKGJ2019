@@ -50,6 +50,15 @@ public class EnemyController : MonoBehaviour
         this.lightSource = GetComponentInChildren<LightSource>();
     }
 
+    private void Start()
+    {
+        if (Mode.IsEasyMode)
+        {
+            runningSpeed /= 3;
+            delay *= 2f;
+        }
+    }
+
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
