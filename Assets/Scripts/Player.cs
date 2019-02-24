@@ -133,14 +133,33 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Enemy"))
+    //    {
+    //        IsAlive = false;
+    //        _playerAudioController.PlayDeathAudioSource();
+    //        _legsTransform.gameObject.SetActive(false);
+    //        _topTransform.gameObject.SetActive(false);
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision collision)
     {
-        if (other.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             IsAlive = false;
             _playerAudioController.PlayDeathAudioSource();
             _legsTransform.gameObject.SetActive(false);
             _topTransform.gameObject.SetActive(false);
         }
+    }
+
+    public void KillPlayer()
+    {
+        IsAlive = false;
+        _playerAudioController.PlayDeathAudioSource();
+        _legsTransform.gameObject.SetActive(false);
+        _topTransform.gameObject.SetActive(false);
     }
 }
