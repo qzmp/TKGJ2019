@@ -1877,7 +1877,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You have escaped...
+  m_Text: You have escaped...?
 --- !u!222 &4529357904183132585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2874,7 +2874,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: You have escaped...
+  m_Text: You have escaped...?
 --- !u!222 &4529357904731347538
 CanvasRenderer:
   m_ObjectHideFlags: 0

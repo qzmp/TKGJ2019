@@ -4729,8 +4729,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Escape from lunatic asylum crowded with sociopathic guards and vile, mounstrous
-    plants. Gather synthetic drugs to gain unimaginable abilities.
+  m_Text: Escape from lunatic asylum crowded with sociopathic guards and vile, monstrous
+    "plants". Gather synthetic drugs to gain unimaginable abilities.
 --- !u!1001 &1814227001541636310
 PrefabInstance:
   m_ObjectHideFlags: 0
