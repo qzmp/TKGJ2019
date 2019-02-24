@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 using System;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class EnemyController : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class EnemyController : MonoBehaviour
     private float normalSpeed;
     private bool hasSeenPlayer = false;
 
+    private Tween tween;
 
     protected void Awake()
     {
@@ -67,6 +69,12 @@ public class EnemyController : MonoBehaviour
                 }
 
                 this.agent.isStopped = false;
+                if (this.tween != null)
+                {
+                    this.tween.Kill();
+                    this.tween = null;
+
+                }
             }
             else
             {
@@ -106,6 +114,11 @@ public class EnemyController : MonoBehaviour
                 search = true;
                 switchTime = float.PositiveInfinity;
                 this.agent.isStopped = false;
+                if(this.tween != null)
+                {
+                    this.tween.Kill();
+                    this.tween = null;
+                }
             }
             else if (!float.IsPositiveInfinity(switchTime))
             {
@@ -146,6 +159,17 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("lookingAround");
         //anim?
+        Vector3 startingRotation = this.transform.rotation.eulerAngles;
+        if(this.tween == null)
+        {
+            Rotate(startingRotation, true);
+        }
+    }
+
+    private void Rotate(Vector3 startingRotation, bool right)
+    {
+        this.tween = this.transform.DORotate(new Vector3(0, 0, startingRotation.z + (right ? 45 : -45)), 1).SetEase(Ease.InOutCirc).OnComplete(() => Rotate(startingRotation, !right));
+
     }
 
     private bool IsFacingPlayer()
