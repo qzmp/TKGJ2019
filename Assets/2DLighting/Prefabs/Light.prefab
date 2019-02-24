@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 360
-  intensity: 5
+  intensity: 0.5
   size: 100
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   blurAmount: 0.1
