@@ -12,7 +12,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 5
   m_LinearDrag: 10
   m_AngularDrag: 10
   m_GravityScale: 0
@@ -31,42 +31,42 @@ PrefabInstance:
     - target: {fileID: 1131410951259772512, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_Name
-      value: CRATE
+      value: CRATE (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.65
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.309999
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.1774285
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0065747653
+      value: -0.2302196
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999784
+      value: 0.97313875
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
@@ -86,12 +86,7 @@ PrefabInstance:
     - target: {fileID: 1131410951259772524, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.753
-      objectReference: {fileID: 0}
-    - target: {fileID: 1131410951259772515, guid: f35b73275e5c83044998ed458d038679,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
+      value: -26.62
       objectReference: {fileID: 0}
     - target: {fileID: 1131410951259772515, guid: f35b73275e5c83044998ed458d038679,
         type: 3}
@@ -102,11 +97,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.023584902
-      objectReference: {fileID: 0}
-    - target: {fileID: 1131410951259772515, guid: f35b73275e5c83044998ed458d038679,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35b73275e5c83044998ed458d038679, type: 3}

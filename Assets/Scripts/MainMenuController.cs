@@ -38,10 +38,10 @@ public class MainMenuController : MonoBehaviour
         bool titleShowed = false;
         bool titleMoved = false;
         
-        IntroText.DOColor(blackAlphaOne, 3f).onComplete += () => titleShowed = true;
+        IntroText.DOColor(blackAlphaOne, 1f).SetEase(Ease.OutSine).onComplete += () => titleShowed = true;
         yield return new WaitUntil(()=>titleShowed);
         DOTween.To(SetFontSize,(float)IntroText.fontSize, (float)MenuTitleText.fontSize, 3f);
-        IntroText.transform.DOMove(MenuTitleText.transform.position,3f).onComplete += () => titleMoved = true;
+        IntroText.transform.DOMove(MenuTitleText.transform.position,2f).SetEase(Ease.OutSine).onComplete += () => titleMoved = true;
         yield return new WaitUntil(()=>titleMoved);
         MenuTitleText.gameObject.SetActive(true);
         IntroGameObject.SetActive(false);
