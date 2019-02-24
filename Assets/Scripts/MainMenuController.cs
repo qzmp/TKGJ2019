@@ -9,7 +9,6 @@ public class MainMenuController : MonoBehaviour
     public GameObject instructions;
     public GameObject credits;
     public GameObject intro;
-    public GameObject monster;
 
     private Image img;
     private bool start;
@@ -23,7 +22,6 @@ public class MainMenuController : MonoBehaviour
         img = intro.GetComponent<Image>();
         start = true;
 
-        monster_trans = monster.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -41,8 +39,6 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
-        Vector3 rotation = new Vector3(0.0f, 0.0f, 10.0f);
-        monster_trans.Rotate(rotation * Time.deltaTime);
     }
 
     public void Play()
@@ -53,14 +49,12 @@ public class MainMenuController : MonoBehaviour
     public void Instructions()
     {
         credits.SetActive(false);
-        monster.SetActive(false);
         instructions.SetActive(true);
     }
 
     public void Credits()
     {
         instructions.SetActive(false);
-        monster.SetActive(false);
         credits.SetActive(true);
     }
 
