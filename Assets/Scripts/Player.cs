@@ -95,16 +95,23 @@ public class Player : MonoBehaviour
             _topAnimator.SetBool("is_walking", speed >= 0.1f);
             _topAnimator.SetFloat("walking_speed", speed);
 
-            if (Mathf.Abs(movementAngle) > 90f)
+            Debug.Log(movementAngle);
+            if (movementInput != Vector2.zero)
             {
-                _legsAnimator.SetFloat("walking_speed", -speed);
-                _legsTransform.localRotation = Quaternion.Euler(0, 0, 180.0f + movementAngle);
-            }
-            else
-            {
+                _legsTransform.rotation = Quaternion.Slerp(_legsTransform.rotation, Quaternion.Euler(0, 0, movementAngle), 0.3f);
                 _legsAnimator.SetFloat("walking_speed", speed);
-                _legsTransform.localRotation = Quaternion.Euler(0, 0, movementAngle);
             }
+
+            //if (Mathf.Abs(movementAngle) > 90f)
+            //{
+            //    //_legsAnimator.SetFloat("walking_speed", -speed);
+            //    //_legsTransform.localRotation = Quaternion.Euler(0, 0, 180.0f + movementAngle);
+            //}
+            //else
+            //{
+            //    _legsAnimator.SetFloat("walking_speed", speed);
+            //    //_legsTransform.localRotation = Quaternion.Euler(0, 0, movementAngle);
+            //}
 
             worldMousePosition.z = 128;
             _topTransform.LookAt(worldMousePosition, Vector3.back);
