@@ -14,13 +14,19 @@ public class PlayerController : MonoBehaviour
     }
     public LayerMask occludingLayers;
 
-    private LightSource[] lightSourcesOnMap;
+    public Dictionary<LightSource, bool> lightSourcesOnMap;
     private CircleCollider2D collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.lightSourcesOnMap = FindObjectsOfType<LightSource>();
+        this.lightSourcesOnMap = new Dictionary<LightSource, bool>();
+        var lightSources = FindObjectsOfType<LightSource>();
+        for(int i = 0; i < lightSources.Length; i++)
+        {
+            lightSourcesOnMap.Add(lightSources[i], false);
+        }
+
         this.collider = GetComponent<CircleCollider2D>();
     }
 
@@ -34,15 +40,20 @@ public class PlayerController : MonoBehaviour
     private void CheckIfIsInLight()
     {
         this.IsInLight = false;
-        for(int i = 0; i < this.lightSourcesOnMap.Length; i++)
+        Dictionary<LightSource, bool> newLightStatuses = new Dictionary<LightSource, bool>();
+        foreach(var x in this.lightSourcesOnMap)
         {
-            this.IsInLight |= CheckIfIsInLight(this.lightSourcesOnMap[i]);
+            bool isInLight = CheckIfIsInLight(x.Key);
+            this.IsInLight |= isInLight;
+            newLightStatuses.Add(x.Key, isInLight);
+
             if (isInLight && Player.IsAlive)
             {
-                this.lightSourcesOnMap[i].GetComponentInParent<AudioController>().PlayDetectedAudioSource();
+                x.Key.GetComponentInParent<AudioController>().PlayDetectedAudioSource();
                 MainCamera.Instance.OnInLight();
             }
         }
+        this.lightSourcesOnMap = newLightStatuses;
     }
 
     private bool CheckIfIsInLight(LightSource source)
