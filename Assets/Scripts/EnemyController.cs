@@ -39,18 +39,21 @@ public class EnemyController : MonoBehaviour
     public float chaseTime = 5;
     private float chaseStartTime;
 
+    private LightSource lightSource;
+
     protected void Awake()
     {
         agent = GetComponent<IAstarAI>();
         this.player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         this.normalSpeed = this.agent.maxSpeed;
         this.lightFlicker = GetComponentInChildren<LightFlicker>(true);
+        this.lightSource = GetComponentInChildren<LightSource>();
     }
 
     /// <summary>Update is called once per frame</summary>
     void Update()
     {
-        if (this.lightFlicker && player.IsInLight || (this.hasSeenPlayer && !this.agent.reachedDestination && !HasBeenChasingLong()))
+        if (this.lightFlicker && IsPlayerInOwnLight()|| (this.hasSeenPlayer && !this.agent.reachedDestination && !HasBeenChasingLong()))
         {
             if (this.hasBeenPatrolling)
             {
@@ -66,7 +69,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
 
-            if(!player.IsInLight && float.IsPositiveInfinity(this.chaseStartTime))
+            if(!IsPlayerInOwnLight() && float.IsPositiveInfinity(this.chaseStartTime))
             {
                 this.chaseStartTime = Time.time;
             }
@@ -81,7 +84,7 @@ public class EnemyController : MonoBehaviour
                 this.hasSeenPlayer = true;
                 Debug.Log("moving towards player");
 
-                if(player.IsInLight && Vector3.Distance(transform.position, player.transform.position) < _alertRange)
+                if(IsPlayerInOwnLight())// && Vector3.Distance(transform.position, player.transform.position) < _alertRange)
                 {
                     this.agent.destination = player.transform.position;
                 }
@@ -153,6 +156,11 @@ public class EnemyController : MonoBehaviour
             _audioController.SetWalkAudio(agent.velocity);
         }
         catch { }
+    }
+
+    private bool IsPlayerInOwnLight()
+    {
+        return this.player.lightSourcesOnMap[this.lightSource];
     }
 
     private bool HasBeenChasingLong()
