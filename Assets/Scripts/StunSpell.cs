@@ -43,7 +43,7 @@ public class StunSpell : MonoBehaviour
     {
         AbilityDisplayController.Instance.SetStunDisplay((Time.time - this._lastUse) / this._stunCooldown);
 
-        if (Input.GetAxis("Fire2") != 0 && canStun && IsStunReady())
+        if (Input.GetAxis("Fire2") != 0 && canStun && IsStunReady() && Player.IsAlive)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

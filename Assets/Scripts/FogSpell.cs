@@ -48,7 +48,7 @@ public class FogSpell : MonoBehaviour
     {
 
         AbilityDisplayController.Instance.SetFogDisplay((Time.time - this.lastFogTime) / this.fogCooldown);
-        if (Input.GetAxis("Fire1") != 0 && _player.Mana > _fogCost && _fogCount < _fogMax)        {
+        if (Input.GetAxis("Fire1") != 0 && _player.Mana > _fogCost && _fogCount < _fogMax && Player.IsAlive)        {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
