@@ -1390,14 +1390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8673985016361311129}
     m_Modifications:
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Name
-      value: Light (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 479812, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1442,9 +1434,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Name
+      value: Light (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 178984, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 11443418, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
       propertyPath: size
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443418, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}
+      propertyPath: blurAmount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 185279983, guid: 8ffb59431ae8e9441a2ffdaeb9d44f41, type: 3}

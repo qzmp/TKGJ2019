@@ -138,6 +138,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.25095037
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 0.95388794
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.2842837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0.45388794
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].time
+      value: 0.35095036
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].value
+      value: 0.20388794
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].time
+      value: 0.48428372
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].value
+      value: 0.07888794
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[4].time
+      value: 0.7509504
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[4].value
+      value: 0.01638794
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[5].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].time
+      value: 0.21761703
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.98472595
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].time
+      value: 0.21761703
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].time
+      value: 0.21761703
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288868832373401007, guid: e0994db3fb7070745a718ba392fa66d0,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.95388794
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0994db3fb7070745a718ba392fa66d0, type: 3}
 --- !u!4 &5288868830541402319 stripped
@@ -153,11 +233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7141738583096547832}
     m_Modifications:
-    - target: {fileID: 2256124671696754231, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: m_Name
-      value: LightProbe (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754219, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,10 +288,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754229, guid: 68e068dd0d18d74449e7417588d71a49,
+    - target: {fileID: 2256124671696754231, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
-      propertyPath: m_Radius
-      value: 2
+      propertyPath: m_Name
+      value: LightProbe (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
@@ -226,16 +301,6 @@ PrefabInstance:
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
       propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
@@ -253,8 +318,12 @@ PrefabInstance:
       propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2256124671696754229, guid: 68e068dd0d18d74449e7417588d71a49, type: 3}
+    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
+        type: 3}
+      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68e068dd0d18d74449e7417588d71a49, type: 3}
 --- !u!4 &2918723070210057741 stripped
 Transform:
@@ -439,11 +508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7141738583096547832}
     m_Modifications:
-    - target: {fileID: 795849627250134583, guid: a63a7c255ffc34a49b9f18887a16cc4b,
-        type: 3}
-      propertyPath: m_Name
-      value: creepy_shit (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4555487623927642641, guid: a63a7c255ffc34a49b9f18887a16cc4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -508,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 795849627250134583, guid: a63a7c255ffc34a49b9f18887a16cc4b,
+        type: 3}
+      propertyPath: m_Name
+      value: creepy_shit (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1771327501790974985, guid: a63a7c255ffc34a49b9f18887a16cc4b,
         type: 3}
@@ -699,11 +768,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7141738583096547832}
     m_Modifications:
-    - target: {fileID: 795849627250134583, guid: a63a7c255ffc34a49b9f18887a16cc4b,
-        type: 3}
-      propertyPath: m_Name
-      value: creepy_shit
-      objectReference: {fileID: 0}
     - target: {fileID: 4555487623927642641, guid: a63a7c255ffc34a49b9f18887a16cc4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -768,6 +832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 795849627250134583, guid: a63a7c255ffc34a49b9f18887a16cc4b,
+        type: 3}
+      propertyPath: m_Name
+      value: creepy_shit
       objectReference: {fileID: 0}
     - target: {fileID: 1771327501790974985, guid: a63a7c255ffc34a49b9f18887a16cc4b,
         type: 3}
@@ -874,11 +943,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7141738583096547832}
     m_Modifications:
-    - target: {fileID: 2256124671696754231, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: m_Name
-      value: LightProbe
-      objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754219, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -934,10 +998,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754229, guid: 68e068dd0d18d74449e7417588d71a49,
+    - target: {fileID: 2256124671696754231, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
-      propertyPath: m_Radius
-      value: 2
+      propertyPath: m_Name
+      value: LightProbe
       objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
@@ -947,16 +1011,6 @@ PrefabInstance:
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
         type: 3}
       propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
-        type: 3}
-      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
@@ -974,8 +1028,12 @@ PrefabInstance:
       propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2256124671696754229, guid: 68e068dd0d18d74449e7417588d71a49, type: 3}
+    - target: {fileID: 2256124671696754228, guid: 68e068dd0d18d74449e7417588d71a49,
+        type: 3}
+      propertyPath: LightStatusChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68e068dd0d18d74449e7417588d71a49, type: 3}
 --- !u!4 &8457941350010495020 stripped
 Transform:

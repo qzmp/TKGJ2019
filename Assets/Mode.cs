@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mode : MonoBehaviour
 {
@@ -10,4 +11,9 @@ public class Mode : MonoBehaviour
     {
         IsEasyMode = value;
     }
+
+	private void Start()
+	{
+		GetComponent<Toggle>().isOn = IsEasyMode;
+	}
 }

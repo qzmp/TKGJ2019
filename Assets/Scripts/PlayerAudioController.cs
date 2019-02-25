@@ -30,8 +30,9 @@ public class PlayerAudioController : AudioController
     {
         if (!_deathAudioSource.isPlaying)
         {
-            _walkAudioSource.Stop();
-            _deathAudioSource.Play();
+	        _walkAudioSource.loop = false;
+			_walkAudioSource.Stop();
+			_deathAudioSource.Play();
             StartCoroutine(WaitForDeathAudioEnd(3));
         }
     }

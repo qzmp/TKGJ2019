@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Main
+  m_Name: Level01
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 114329933736798906}
@@ -129,7 +129,7 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 0.50000095
+    value: 0.5357969
   size:
     overrideState: 1
     value: 0.44
@@ -210,7 +210,7 @@ MonoBehaviour:
     value: 1
   contrast:
     overrideState: 1
-    value: 0.0000024895633
+    value: 7.159402
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
